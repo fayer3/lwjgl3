@@ -552,7 +552,7 @@ val VRVulkanDevice_t = struct(Module.OPENVR, "VRVulkanDevice", nativeName = "VRV
 
 val VRNativeDevice_t = struct(Module.OPENVR, "VRNativeDevice", nativeName = "VRNativeDevice_t") {
     opaque_p("handle", "")
-    EDeviceType("eType", "", )
+    EDeviceType("eType", "")
 }
 
 val VROverlayIntersectionMaskPrimitive_Data_t = union(Module.OPENVR, "VROverlayIntersectionMaskPrimitiveData", nativeName = "VROverlayIntersectionMaskPrimitive_Data_t") {
