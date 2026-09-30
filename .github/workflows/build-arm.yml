@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v6
 
     - name: set up JDK
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v5
       with:
         distribution: temurin
         java-version: 8
@@ -29,13 +29,13 @@ jobs:
 
     - name: Upload modules release output
       if: ${{matrix.arch == 'arm64'}} # Only upload this once
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v6
       with:
         name: lwjgl3-modules
         path: bin/RELEASE
 
     - name: Upload native build output
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v6
       with:
         name: lwjgl3-natives-${{matrix.arch}}
         path: bin/out
