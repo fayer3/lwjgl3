@@ -20,11 +20,10 @@ jobs:
       with:
         distribution: temurin
         java-version: 8
+        
     - name: Set up GCC
-      uses: egor-tensin/setup-gcc@v2
-      with:
-        version: latest
-        platform: aarch64
+      run: |
+        sudo apt-get -y install gcc-aarch64-linux-gnu
       
     - name: Build for ${{matrix.arch}}
       run: |
