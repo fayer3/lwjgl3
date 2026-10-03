@@ -20,7 +20,12 @@ jobs:
       with:
         distribution: temurin
         java-version: 8
-
+        
+    - name: Set up GCC
+      run: |
+        sudo apt-get -y install gcc-aarch64-linux-gnu
+        sudo apt-get -y install g++-aarch64-linux-gnu
+      
     - name: Build for ${{matrix.arch}}
       run: |
         export JAVA8_HOME=$JAVA_HOME_8_${{runner.arch}}
