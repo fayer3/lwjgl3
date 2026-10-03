@@ -20,7 +20,12 @@ jobs:
       with:
         distribution: temurin
         java-version: 8
-
+    - name: Set up GCC
+      uses: egor-tensin/setup-gcc@v2
+      with:
+        version: latest
+        platform: aarch64
+      
     - name: Build for ${{matrix.arch}}
       run: |
         export JAVA8_HOME=$JAVA_HOME_8_${{runner.arch}}
