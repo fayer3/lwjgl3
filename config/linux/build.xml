@@ -492,11 +492,11 @@
             <update-dependency module="ktx" artifact="libktx.so"/>
             <update-dependency module="openal" artifact="libopenal.so"/>
             <sequential>
-                <sequential if:true="${binding.@{module}}">
+                <sequential if:true="${binding.openvr}">
                     <local name="dest"/>
                     <property name="dest" value="${lib.native}/${module.openvr.path}"/>
                     <mkdir dir="${dest}"/>
-                    <get-quiet name="openvr :: libopenvr_api.so" url="https://github.com/ValveSoftware/openvr/raw/refs/tags/v1.26.7/lib/linux${build.arch}/libopenvr_api.so" dest="${dest}" skipexisting="false"/>
+                    <get-quiet name="openvr :: libopenvr_api.so" url="https://github.com/ValveSoftware/openvr/raw/refs/tags/v1.26.7/bin/linux${build.arch}/libopenvr_api.so" dest="${dest}" skipexisting="false"/>
                 </sequential>
             </sequential>
                 
