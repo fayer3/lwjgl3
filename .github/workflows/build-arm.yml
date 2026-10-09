@@ -50,4 +50,4 @@ jobs:
         files: bin/RELEASE/lwjgl-openvr/lwjgl-openvr-natives-linux-arm64.jar
         target_commitish: ${{ github.ref_name }}
         name: ${{ github.ref_name }}
-        tag_name: ${{ github.ref_name }}
+        tag_name: v${{ github.ref_name }}
