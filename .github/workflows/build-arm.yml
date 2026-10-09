@@ -1,7 +1,11 @@
 name: arm build
 
 on: 
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      version:
+        description: version
+        type: string
 
 jobs:
   build:
@@ -44,11 +48,14 @@ jobs:
         path: bin/RELEASE/lwjgl-openvr
         retention-days: 1
         if-no-files-found: error
+    - name: rename
+      run: |
+        cp bin/RELEASE/lwjgl-openvr/lwjgl-openvr-natives-linux-arm64.jar ./lwjgl-openvr-${{ github.sha }}-natives-linux-arm64.jar
     - name: github release
       uses: softprops/action-gh-release@v3
       with:
-        files: bin/RELEASE/lwjgl-openvr/lwjgl-openvr-natives-linux-arm64.jar
+        files: lwjgl-openvr-${{ github.sha }}-natives-linux-arm64.jar
         target_commitish: ${{ github.sha }}
-        name: ${{ github.ref_name }}
-        tag_name: v${{ github.ref_name }}
-        body: ${{ github.ref_name }}
+        name: ${{ inputs.version }}
+        tag_name: v${{ inputs.version }}
+        body: lwjgl ${{ inputs.version }} linux arm64 openvr natives
