@@ -8,6 +8,8 @@ ant -version
 ant init
 ant \
   -Dbinding.remotery=false \
+  -Dbinding.jawt=false \
+  -Dbinding.nfd=false \
   -Dbinding.openvr=true \
   -Dplatform.linux=true \
   -Dbuild.type=release/3.3.3 \
@@ -20,6 +22,8 @@ ant \
 export LWJGL_BUILD_OFFLINE=true
 ant \
   -Dbinding.remotery=false \
+  -Dbinding.jawt=false \
+  -Dbinding.nfd=false \
   -Dbinding.openvr=true \
   -Dplatform.linux=true \
   -Dbuild.type=release/3.3.3 \
