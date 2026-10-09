@@ -5,42 +5,37 @@ on:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        arch: [ "arm64" ]
-      fail-fast: false
-
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v6
 
-    - name: set up JDK
+    - name: set up JDK 8
       uses: actions/setup-java@v5
       with:
         distribution: temurin
         java-version: 8
+
+    - name: set up JDK
+      uses: actions/setup-java@v5
+      with:
+        distribution: temurin
+        java-version: 17
         
     - name: Set up GCC
       run: |
         sudo apt-get -y install gcc-aarch64-linux-gnu
         sudo apt-get -y install g++-aarch64-linux-gnu
       
-    - name: Build for ${{matrix.arch}}
+    - name: Build for arm64
       run: |
         export JAVA8_HOME=$JAVA_HOME_8_${{runner.arch}}
-        export LWJGL_BUILD_ARCH=${{matrix.arch}}
         bash ci_build.bash
 
-    - name: Upload modules release output
-      if: ${{matrix.arch == 'arm64'}} # Only upload this once
-      uses: actions/upload-artifact@v6
+    - name: github release
+      uses: softprops/action-gh-release@v3
       with:
-        name: lwjgl3-modules
-        path: bin/RELEASE
-
-    - name: Upload native build output
-      uses: actions/upload-artifact@v6
-      with:
-        name: lwjgl3-natives-${{matrix.arch}}
-        path: bin/out
+        files: bin/RELEASE/lwjgl-openvr/lwjgl-openvr-natives-linux-arm64.jar
+        target_commitish: ${ GITHUB_REF_NAME }
+        name: ${ GITHUB_REF_NAME }
+        tag_name: ${ GITHUB_REF_NAME }
