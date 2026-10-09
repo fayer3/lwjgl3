@@ -50,11 +50,11 @@ jobs:
         if-no-files-found: error
     - name: rename
       run: |
-        cp bin/RELEASE/lwjgl-openvr/lwjgl-openvr-natives-linux-arm64.jar ./lwjgl-openvr-${{ github.sha }}-natives-linux-arm64.jar
+        cp bin/RELEASE/lwjgl-openvr/lwjgl-openvr-natives-linux-arm64.jar ./lwjgl-openvr-${{ inputs.version }}-natives-linux-arm64.jar
     - name: github release
       uses: softprops/action-gh-release@v3
       with:
-        files: lwjgl-openvr-${{ github.sha }}-natives-linux-arm64.jar
+        files: lwjgl-openvr-${{ inputs.version }}-natives-linux-arm64.jar
         target_commitish: ${{ github.sha }}
         name: ${{ inputs.version }}
         tag_name: v${{ inputs.version }}
