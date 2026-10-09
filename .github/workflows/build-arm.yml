@@ -40,7 +40,7 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v6
       with:
-        name: ${ GITHUB_REF_NAME }
+        name: ${{ github.ref_name }}
         path: bin/RELEASE/lwjgl-openvr
         retention-days: 1
         if-no-files-found: error
@@ -48,6 +48,6 @@ jobs:
       uses: softprops/action-gh-release@v3
       with:
         files: bin/RELEASE/lwjgl-openvr/lwjgl-openvr-natives-linux-arm64.jar
-        target_commitish: ${ GITHUB_REF_NAME }
-        name: ${ GITHUB_REF_NAME }
-        tag_name: ${ GITHUB_REF_NAME }
+        target_commitish: ${{ github.ref_name }}
+        name: ${{ github.ref_name }}
+        tag_name: ${{ github.ref_name }}
